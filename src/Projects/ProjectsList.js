@@ -5,14 +5,18 @@ import "./projects.css";
 var { projects } = require("./projects.json");
 
 function ProjectsList(){
-    const selectedProjects = new Set();
+    const selectedIds = new Set();
     const handleCheckBoxChange = (id, checked) =>{
         console.log("Parent checked : ",checked,"id: ",id);
         if (checked){
-            selectedProjects.add(id);
+            selectedIds.add(id);
         }else{
-            selectedProjects.delete(id);
+            selectedIds.delete(id);
         }
+    }
+    const handleSubmit = () => {
+        const selectedProjects = ( projects.filter((project, index) => selectedIds.has(index)) );
+        console.log(selectedProjects);
     }
     return (
         <section>
@@ -32,7 +36,7 @@ function ProjectsList(){
                     }
                 </tbody>
             </table>
-            <button>Submit</button>
+            <button onClick={handleSubmit}>Submit</button>
         </section>
     );
 }
