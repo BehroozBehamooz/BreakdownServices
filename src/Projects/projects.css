@@ -1,0 +1,15 @@
+.table{
+    width: 100%;
+    min-width: 990px;
+    height: 426px;
+}
+.tableHead, .tableBody{
+    font-family: Helvetica, Arial, sans-serif;
+    color: #4A4A4A;
+}
+.tableHead{
+    font-size: 16px;
+}
+.tableBody{
+    font-size: 14px;
+}
