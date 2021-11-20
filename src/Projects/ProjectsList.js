@@ -5,7 +5,11 @@ import "./projects.css";
 
 function ProjectsList(){
     const { projects:imported  } = require("./projects.json");
-    const [projects, setProjects] = useState(imported);
+    const importedProjectsWithId = imported.map((importedProject,i)=>{
+        importedProject.id = i;
+        return importedProject;
+    });
+    const [projects, setProjects] = useState(importedProjectsWithId);
     const [selectedIds, setSelectedIds] = useState(() => new Set());
     const handleCheckBoxChange = (id, checked) =>{
         if (checked){
@@ -22,7 +26,7 @@ function ProjectsList(){
     }
     const handleSubmit = () => {
         console.log("handleSubmit: ", selectedIds);
-        const selectedProjects = ( projects.filter((project, index) => selectedIds?.has(index)) );
+        const selectedProjects = ( projects.filter((project) => selectedIds?.has(project.id)) );
         console.log(selectedProjects);
     }
     const handlePostDateClick= () =>{
@@ -52,7 +56,7 @@ function ProjectsList(){
                 </thead>
                 <tbody className="tableBody">
                     {projects.map((project, index) => 
-                        <Project project={project} id={index} handleCheckBoxChange={handleCheckBoxChange} key={index}/> )
+                        <Project project={project} id={project.id} checked={selectedIds.has(project.id)} handleCheckBoxChange={handleCheckBoxChange} key={index}/> )
                     }
                 </tbody>
             </table>
