@@ -7,7 +7,6 @@ var { projects } = require("./projects.json");
 function ProjectsList(){
     const selectedIds = new Set();
     const handleCheckBoxChange = (id, checked) =>{
-        console.log("Parent checked : ",checked,"id: ",id);
         if (checked){
             selectedIds.add(id);
         }else{
@@ -19,11 +18,12 @@ function ProjectsList(){
         console.log(selectedProjects);
     }
     return (
-        <section>
-            <table className="table table-striped">
+        <section className="container">
+            <div className="title">Projects</div>
+            <table className="table">
                 <thead className="tableHead">
-                    <tr>
-                        <th >Check</th>
+                    <tr className="row">
+                        <th >{" "}</th>
                         <th >Name</th>
                         <th >Type</th>
                         <th >Casting Director</th>
@@ -36,7 +36,7 @@ function ProjectsList(){
                     }
                 </tbody>
             </table>
-            <button onClick={handleSubmit}>Submit</button>
+            <button className="btn" onClick={handleSubmit}>Submit</button>
         </section>
     );
 }

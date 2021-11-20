@@ -5,15 +5,14 @@ function Project({ project, id, handleCheckBoxChange }) {
     const handleChange = () => {
         setChecked(!checked);
         handleCheckBoxChange(id, !checked);
-        console.log("child: checked: ",!checked);
     }
     return (
-        <tr>
-        <td><input type="checkbox" checked={checked} onChange={handleChange}/></td>
-        <td>{project.name}</td>
-        <td>{project.type}</td>
-        <td>{project.castingDirector}</td>
-        <td>{project.postedDate}</td>
+        <tr className="row">
+            <td><input type="checkbox" checked={checked} onChange={handleChange}/></td>
+            <td className="upperCase">{project.name}</td>
+            <td>{project.type}</td>
+            <td>{project.castingDirector}</td>
+            <td>{project.postedDate}</td>
         </tr>
     );
 }

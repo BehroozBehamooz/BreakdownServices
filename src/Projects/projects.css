@@ -1,15 +1,53 @@
-.table{
+.container{
     width: 100%;
     min-width: 990px;
-    height: 426px;
+    max-width: 990px;
+    margin-left: auto;
+    margin-right: auto;
 }
-.tableHead, .tableBody{
+.title, .tableHead, .tableBody{
     font-family: Helvetica, Arial, sans-serif;
     color: #4A4A4A;
 }
+.title{
+    text-transform: uppercase;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.table{
+    width: 100%;
+    height: 426px;
+    text-align: left;
+    background-color: #fff;
+    border-collapse: collapse;
+}
 .tableHead{
     font-size: 16px;
+    border-bottom: #e8e7e6 solid 2px;
 }
 .tableBody{
     font-size: 14px;
+}
+.upperCase{
+    text-transform: uppercase;
+}
+.row{
+    height: 60px;
+    margin-bottom: 1px;
+    border-bottom: #e8e7e6 solid 1px;
+    margin-bottom: 5px;
+}
+.btn{
+    display: block;
+    margin-left: auto;
+    margin-top: 10px;
+    width: 120px;
+    height: 32px;
+    background-color: #8E0000;
+    color: #FFFFFF;
+    border-radius: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
 }
