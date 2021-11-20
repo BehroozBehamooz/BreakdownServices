@@ -13,10 +13,8 @@ function ProjectsList(){
     const [selectedIds, setSelectedIds] = useState(() => new Set());
     const handleCheckBoxChange = (id, checked) =>{
         if (checked){
-            console.log("handleCheckBoxChange > selectedIds: ",selectedIds);
             setSelectedIds((selectedIds) => new Set(selectedIds).add(id));
         }else{
-            console.log("handleCheckBoxChange > selectedIds: ",selectedIds);
             setSelectedIds(selectedIds => {
                 const tempSet = new Set(selectedIds);
                 tempSet.delete(id);
@@ -25,7 +23,6 @@ function ProjectsList(){
         }
     }
     const handleSubmit = () => {
-        console.log("handleSubmit: ", selectedIds);
         const selectedProjects = ( projects.filter((project) => selectedIds?.has(project.id)) );
         console.log(selectedProjects);
     }
@@ -64,5 +61,4 @@ function ProjectsList(){
         </section>
     );
 }
-
 export default ProjectsList;
