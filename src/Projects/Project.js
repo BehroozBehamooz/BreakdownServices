@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function Project({ project, id, handleCheckBoxChange }) {
     const [checked, setChecked] = useState(false);
+    useEffect(()=>{
+        console.log("useEffect > project > id ",project, id);
+        setChecked(false);
+        handleCheckBoxChange(id, false);
+    },[project]);
     const handleChange = () => {
+        console.log("child > handleChange > id: ", id)
         setChecked(!checked);
         handleCheckBoxChange(id, !checked);
     }

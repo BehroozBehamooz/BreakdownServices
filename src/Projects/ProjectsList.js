@@ -1,21 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import  Project from "./Project.js";
 import "./projects.css";
 
-var { projects } = require("./projects.json");
 
 function ProjectsList(){
-    const selectedIds = new Set();
+    const { projects:imported  } = require("./projects.json");
+    const [projects, setProjects] = useState(imported);
+    const [selectedIds, setSelectedIds] = useState(() => new Set());
     const handleCheckBoxChange = (id, checked) =>{
         if (checked){
-            selectedIds.add(id);
+            console.log("handleCheckBoxChange > selectedIds: ",selectedIds);
+            setSelectedIds((selectedIds) => new Set(selectedIds).add(id));
         }else{
-            selectedIds.delete(id);
+            console.log("handleCheckBoxChange > selectedIds: ",selectedIds);
+            setSelectedIds(selectedIds => {
+                const tempSet = new Set(selectedIds);
+                tempSet.delete(id);
+                return tempSet;
+            });
         }
     }
     const handleSubmit = () => {
-        const selectedProjects = ( projects.filter((project, index) => selectedIds.has(index)) );
+        console.log("handleSubmit: ", selectedIds);
+        const selectedProjects = ( projects.filter((project, index) => selectedIds?.has(index)) );
         console.log(selectedProjects);
+    }
+    const handlePostDateClick= () =>{
+        const sortedProjects = projects.sort((a, b) => {
+            const aDate = new Date(a.postedDate);
+            const bDate = new Date(b.postedDate);
+            if (aDate.valueOf() <  bDate.valueOf()) {
+              return -1;
+            }else{
+                return 1;
+            }
+        });
+        setProjects([...sortedProjects]);
     }
     return (
         <section className="container">
@@ -27,12 +47,12 @@ function ProjectsList(){
                         <th >Name</th>
                         <th >Type</th>
                         <th >Casting Director</th>
-                        <th >Post Date</th>
+                        <th onClick={handlePostDateClick} className="postDate">Post Date</th>
                     </tr>
                 </thead>
                 <tbody className="tableBody">
                     {projects.map((project, index) => 
-                            <Project project={project} id={index} handleCheckBoxChange={handleCheckBoxChange} key={index}/> )
+                        <Project project={project} id={index} handleCheckBoxChange={handleCheckBoxChange} key={index}/> )
                     }
                 </tbody>
             </table>
